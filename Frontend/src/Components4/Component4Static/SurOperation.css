@@ -1,0 +1,28 @@
+.surContainer {
+    border: 1px solid rgb(224, 224, 224);
+    background: white;
+    border-radius: 22px;
+    box-shadow: rgb(0 0 0 / 29%) 0px 6px 18px 0px;
+    margin: 40px auto;
+    width: 100%;
+    padding: 25px;
+    background: #fff;
+    max-width: 80%;
+    display: flex;
+    flex-direction: column;
+    direction: ltr;
+}
+.mmCard{
+    margin-left: 22% ;
+    margin-top: 5%;
+}
+.but{
+    margin-top: 5%;
+    margin-right: 3%;
+}
+.LabelCon{
+    font-size: 14px;
+}
+.Change{
+    margin-right: 80%;
+}

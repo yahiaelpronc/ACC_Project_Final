@@ -1,0 +1,114 @@
+/* Start New Schedule Css **/
+#image22 {
+  width: 100%;
+  height: 200px;
+  margin-bottom: 2%;
+}
+.mid {
+  margin-bottom: 4%;
+}
+#head2 {
+  margin-left: 3%;
+  margin-bottom: 2%;
+  font-family: Georgia, "Times New Roman", Times, serif;
+  font-size: 22px;
+}
+.labels {
+  font-size: 14px;
+  color: grey;
+  padding: 2%;
+}
+.cc {
+  width: 90%;
+  margin-left: 6%;
+  margin-top: 2%;
+}
+.cc ul li {
+  text-align: left;
+}
+.sp {
+  margin-right: 60%;
+  font-size: 13px;
+  margin-bottom: 1%;
+  padding: 2%;
+}
+/*
+.list-group-item{
+    border: 3px solid rgb(0, 112, 205);
+}
+*/
+.inputs {
+  margin-right: 30%;
+  font-size: 18px;
+}
+.span22 {
+  padding: 5%;
+  font-size: 14px;
+  font-weight: bolder;
+}
+.table {
+  background-color: azure;
+  font-size: 14px;
+}
+/* End New Schedule Css**/
+/* New Request Start*/
+.buttons {
+  margin-left: 37%;
+  margin-bottom: 3%;
+}
+.bb {
+  background-color: #1787e0;
+  margin-left: 2%;
+}
+/* New Request Ends Css*/
+/*New Details Start */
+#lists {
+  margin-top: 3%;
+}
+.dogDev {
+  margin-bottom: 3%;
+  width: 100%;
+}
+#newsPhoto {
+  height: 100%;
+  width: 100%;
+}
+.line {
+  text-align: left;
+}
+.phSpan {
+  margin-left: 5%;
+  font-size: 14px;
+}
+#qqq {
+  color: #1787e0;
+}
+
+.kk {
+  padding: 6%;
+  text-align: left !important;
+}
+
+#bill,
+#serv {
+  color: #1787e0;
+}
+.colll {
+  margin-top: 3%;
+}
+.det {
+  margin-bottom: 7%;
+}
+#book {
+  margin-top: 4%;
+  margin-left: 73%;
+}
+/* Location Filter Start Css*/
+#aaaa {
+  width: 10% !important;
+}
+#det {
+  margin-top: 2%;
+}
+
+/* Location Filter End Css*/
