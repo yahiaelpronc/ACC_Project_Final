@@ -39,10 +39,10 @@ function UserServiceResponses(){
 
                 {Requests.map(req=>{
                     return(<>
-                    {req.statusUser !== "declined" && (
+                    
                                                          <ServicesResponsesDiv reasonUser={req.reasonUser} reasonVet={req.reasonVet} AnimalType={req.AnimalType} locationName={req.locationName} animalOwner={req.animalOwner} serviceName={req.serviceName} price={req.price}
                                                          id={req.id} date={req.date} time={req.time} timePeriod={req.timePeriod} statusUser={req.statusUser} locationOwner={req.locationOwner} statusOwner={req.statusOwner} />
-                    )}
+                  
 
 
                             </>)

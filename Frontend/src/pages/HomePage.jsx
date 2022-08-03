@@ -272,7 +272,7 @@ function Home() {
                 <Link to="/MedicationUser">More</Link>
               </div>
             </>
-            :
+            : 
             <>
               <div className="box passion">
                 <div className="img-holder"><img src={feature3} alt="" /></div>
@@ -286,6 +286,14 @@ function Home() {
                 <p>View All Your Scheduled Surgeries From Here</p>
                 <Link to="/TableOfSurgries">More</Link>
               </div>
+              {loggedUser.isOwner &&
+            <div className="box quality">
+              <div className="img-holder"><img src={feature1} alt="" /></div>
+              <h2>Your Location's Service Requests</h2>
+              <p>View All Of Your Location's Service Requests From Here</p>
+              <Link to="/ServicesRequest">More</Link>
+            </div>
+          }
             </>
           }
         </div>

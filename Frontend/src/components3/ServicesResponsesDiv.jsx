@@ -98,6 +98,11 @@ function ServicesResponsesDiv(props) {
 
 
     return (<>
+            {(props.statusUser !== "declined" && (yearDiff > 0 || (MonthDiff > 0 && yearDiff == 0 ) || (yearDiff == 0 && MonthDiff == 0 && dayDiff > 0) )  )  &&  (<>
+
+
+
+
 
         <div className="container-fluid row p-3 border border-secondary my-5 mx-2 rounded" style={{ display: showdata }}>
             <div className="col-6">
@@ -167,7 +172,7 @@ function ServicesResponsesDiv(props) {
                         <li className="list-group-item" style={{display:showreason}}>
                                                 <label className="sp text-danger" htmlFor="">Reason Of Decline:</label>
                                                 <input placeholder="Reason" type="text" className="inputs" onChange={(e)=>setReason(e.target.value)} value={reason} name='reason' required />
-                                                <div  className="d-flex justify-content-end"><button onClick={(e)=>declineStatus(e)} className="btn btn-danger">Submit</button></div>
+                                                <div  className="d-flex justify-content-end"><button onClick={(e)=>declineStatus(e)} className="btn btn-danger">Confirm</button></div>
 
                                                 
 
@@ -179,14 +184,17 @@ function ServicesResponsesDiv(props) {
                     {props.statusUser !== "accepted" &&
                         <button onClick={(e) => acceptStatus(e)} className='btn btn-danger mx-2'>Accept</button>
                         }
-                    {(dayDiff > 0 | MonthDiff > 0 | yearDiff > 0 ) && (
-                        <button onClick={(e) => submitDecline(e)} className='btn btn-danger mx-2'>decline</button>
+                        <button onClick={(e) => submitDecline(e)} disabled={dayDiff <= 1 && MonthDiff <= 0 && yearDiff <=0} className='btn btn-danger mx-2'>decline</button>
 
-                    )}
+                    {/* {(dayDiff > 0 | MonthDiff > 0 | yearDiff > 0 ) && (
+
+                    )} */}
                   
                 </div>
             </div>
         </div>
+        </>)}
+
 
 
 

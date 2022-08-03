@@ -28,7 +28,7 @@ function TableOfSurgries() {
     const [dataCame, setDataCame] = useState(false)
     const [showreason, setshowreason] = useState("none")
     const [reason, setReason] = useState("")
-    const [declineErr,setDeclineErr]=useState()
+    const [declineErr, setDeclineErr] = useState()
 
 
 
@@ -85,12 +85,13 @@ function TableOfSurgries() {
 
     }
     const [showdata, setshowdata] = useState("flex")
+    const [dateleft, setdateleft] = useState(false)
 
     const dismissSurgery = async (e) => {
         let id = e.target.id
         let formdata2 = new FormData()
         formdata2.append("statusVet", "declined")
-        formdata2.append("reasonVet",reason)
+        formdata2.append("reasonVet", reason)
 
         await axios({
             method: 'POST',
@@ -98,9 +99,15 @@ function TableOfSurgries() {
             data: formdata2
         })
             .then((data) => {
-                if(data.data === "you cant decline before 24 hours"){
-                    setDeclineErr("you cant decline before 24 hours")
-                }else{
+                if (data.data === "you can't decline before 24 hours") {
+                    setDeclineErr("you can't decline before 24 hours")
+                    document.getElementById(`errdeclinePara${e.target.id}`).innerText = "you can't decline before 24 hours"
+
+                } else if (data.data === "date passed") {
+                    setdateleft(true)
+
+                }
+                else {
                     sendNotification(e.target.name, "surgery")
                     console.log(data.data)
                     setshowdata("none")
@@ -108,7 +115,7 @@ function TableOfSurgries() {
 
                 }
                 // history.push("/")
-            
+
             }
             )
             .catch((err) => console.log(err))
@@ -128,48 +135,55 @@ function TableOfSurgries() {
         })
             .catch((err) => console.log(err))
     }
-    
-    const submitDecline =(e)=>{
-        setshowreason("block")
+
+
+    const submitDecline = (e) => {
+        // setshowreason("block")
+        // if(showreason === "none"){
+        //     setshowreason("block")
+        // }else{
+        //     setshowreason("none")
+        // }
+        document.getElementById(`reason${e.target.id}`).style.display = "block"
 
     }
 
 
 
 
-    
-    
-    const mytoday=new Date()
-
-    const todayYear=mytoday.getFullYear()
-    const todayMonth=mytoday.getMonth()+1
-    const todayDay=mytoday.getDay()
-
-    const [dayDiff,setdayDiff]=useState()
-    const [monthDiff,setmonthDiff]=useState()
-    const [YearDiff,setYearDiff]=useState()
 
 
+    const mytoday = new Date()
+
+    const todayYear = mytoday.getFullYear()
+    const todayMonth = mytoday.getMonth() + 1
+    const todayDay = mytoday.getDay()
+
+    const [dayDiff, setdayDiff] = useState()
+    const [monthDiff, setmonthDiff] = useState()
+    const [YearDiff, setYearDiff] = useState()
 
 
-   var Mydiff=false;
 
-    const DateDiff = (b_date)=>{
-        const dateDay=b_date.split("-")[2]
-        const dateMonth=b_date.split("-")[1]
-        const dateYear=b_date.split("-")[0]
 
-        var dayDiff1= dateDay-todayDay
-        var monthDiff1=dateMonth-todayMonth
-        var YearDiff1=dateYear-todayYear
-        console.log("dayDiff1",dayDiff1)
-        console.log("monthDiff1",monthDiff1)
-        console.log("YearDiff1",YearDiff1)
+    var Mydiff = false;
 
-        if(dayDiff1 > 0 | monthDiff1 > 0 | YearDiff1 > 0){
-            Mydiff=true
-        }else{
-            Mydiff=false
+    const DateDiff = (b_date) => {
+        const dateDay = b_date.split("-")[2]
+        const dateMonth = b_date.split("-")[1]
+        const dateYear = b_date.split("-")[0]
+
+        var dayDiff1 = dateDay - todayDay
+        var monthDiff1 = dateMonth - todayMonth
+        var YearDiff1 = dateYear - todayYear
+        console.log("dayDiff1", dayDiff1)
+        console.log("monthDiff1", monthDiff1)
+        console.log("YearDiff1", YearDiff1)
+
+        if (dayDiff1 > 0 | monthDiff1 > 0 | YearDiff1 > 0) {
+            Mydiff = true
+        } else {
+            Mydiff = false
         }
 
     }
@@ -178,7 +192,9 @@ function TableOfSurgries() {
     // console.log("test1111 is :",Mydiff)
 
 
-
+    const setmyReason = (e) => {
+        setReason(e.target.value)
+    }
 
 
     return (
@@ -205,7 +221,7 @@ function TableOfSurgries() {
 
 
                 return (<>
-                    {sur.statusVet !== "declined" && (
+                    {(sur.statusVet !== "declined" && dateleft !== true) && (
                         <div className="container-fluid row p-3 border border-secondary my-5 mx-2 rounded" style={{ display: showdata }}>
 
                             <div className="col-12 p-3 fs-4 text-danger">{sur.message}</div>
@@ -249,7 +265,7 @@ function TableOfSurgries() {
                                                 <label className="labels" htmlFor=""> User's Status :</label>
                                                 <span className="span22">{sur.statusUser} </span>
                                             </li>
-                                            {sur.statusUser === "declined" &&(<>
+                                            {sur.statusUser === "declined" && (<>
                                                 <li className="list-group-item">
                                                     <label className="labels" htmlFor=""> User Reason :</label>
                                                     <span className="span22">{sur.reasonUser} </span>
@@ -263,15 +279,13 @@ function TableOfSurgries() {
                                             <li className="list-group-item">
                                                 <label className="labels" htmlFor="span22">Operation date: </label>
                                                 <span className="span22">{sur.date}</span>
-                                                
+
 
                                             </li>
-                                            {sur.statusUser !== "declined"&&(<>
-                                                <li className="list-group-item">
-                                            
-                                                        <span className="span22 text-danger">Note* : you cant decline before 24 hours </span>
-                                                </li>
-                                            </>)}
+                                            <li className="list-group-item">
+
+                                                <span className="span22 text-danger">Note* : you can't decline before 24 hours </span>
+                                            </li>
 
                                             <li className="list-group-item">
                                                 <label className="labels" htmlFor="">Operation Name:</label>
@@ -285,30 +299,26 @@ function TableOfSurgries() {
                                                 <label className="labels" htmlFor=""> User's Status:</label>
                                                 <span className="span22">{sur.statusUser} </span>
                                             </li>
-                                            {sur.statusUser === "declined" &&(<>
+                                            {sur.statusUser === "declined" && (<>
                                                 <li className="list-group-item">
                                                     <label className="labels" htmlFor=""> User Reason :</label>
                                                     <span className="span22">{sur.reasonUser} </span>
                                                 </li>
-             
+
 
 
                                             </>)}
 
 
-   
 
 
 
-                                            <li className="list-group-item" style={{display:showreason}}>
+
+                                            <li className="list-group-item" id={`reason${sur.id}`} style={{ display: "none" }}>
                                                 <label className="sp text-danger" htmlFor="">Reason Of Decline:</label>
-                                                <input placeholder="Reason" type="text" className="inputs" onChange={(e)=>setReason(e.target.value)} value={reason} name='reason' required />
-                                                <p className="span22 my-2 p-1 text-danger">{declineErr}</p>
-
-                                                <div  className="d-flex justify-content-end"><button onClick={(e)=>dismissSurgery(e)} id={sur.id} name={sur.owner} className="btn btn-danger">Submit</button></div>
-
-                                                
-
+                                                <input id="reasonInput" placeholder="Reason" type="text" className="inputs" onChange={(e) => setmyReason(e)} required />
+                                                <p id={`errdeclinePara${sur.id}`} className='text-danger'></p>
+                                                <div className="d-flex justify-content-end"><button id={sur.id} name={sur.vetName} onClick={(e) => dismissSurgery(e)} className="btn btn-danger">Confirm</button></div>
                                             </li>
                                         </>)}
 
@@ -316,20 +326,23 @@ function TableOfSurgries() {
 
                                     </ul>
                                 </div>
-                      
 
 
-                                {sur.price === 0 ? (<>
-                                    <Link to={`/NewSc/${sur.id}`}>  <button className="btn btn-danger mt-5 ms-4 px-3 py-2">Details</button></Link>
 
-                                    <button name={sur.owner} id={sur.id} onClick={(e) => submitDecline(e)} className="btn btn-danger mt-5 ms-5 p-2">Decline & Dismiss</button>
-  
+                                {sur.price === 0 ? (
+                                    <>
+                                        <Link to={`/NewSc/${sur.id}`}>  <button className="btn btn-danger mt-5 ms-4 px-3 py-2">Details</button></Link>
 
-                                </>) : (<>
+                                    </>
+                                )
+                                    :
+                                    (
+                                        <>
 
-                                    <button name={sur.owner} id={sur.id} onClick={(e) => submitDecline(e)} className="btn btn-danger mt-5 ms-5 p-2">Decline & Dismiss</button>
-                                    
-                                </>)}
+                                            <button name={sur.owner} id={sur.id} onClick={(e) => submitDecline(e)} className="btn btn-danger mt-5 ms-5 p-2">Decline & Dismiss</button>
+
+                                        </>
+                                    )}
 
                             </div>
                         </div>
