@@ -164,7 +164,7 @@ function ServicesRequestsDiv(props) {
                         </ul>
                     </div>
                     <div className='my-4 p-2'>
-                        {props.statusOwner !== "accepted" &&
+                        {(props.statusOwner !== "accepted" && props.statusUser !== "declined") &&
                             <button onClick={(e) => acceptStatus(e)} className='btn btn-danger mx-2'>Accept</button>
                         }
 
