@@ -16,6 +16,7 @@ function AdminPage2() {
             "North Sinai", "Port Said", "Qalyubia", "Qena", "Red Sea", "Sharqia", "Sohag", "South Sinai", "Suez"]
     )
     const [owner, setowner] = useState("")
+    const [ownerType, setownerType] = useState("default")
 
     const [name, setname] = useState("")
     const [email, setemail] = useState("")
@@ -41,6 +42,7 @@ function AdminPage2() {
         work_hours_starterr: "",
         work_hours_enderr: "",
         ownererr: "",
+        ownerTypeerr: "",
     })
 
     const changedata = (e) => {
@@ -95,6 +97,9 @@ function AdminPage2() {
                 ownererr: (e.target.value.length < 3 || e.target.value.length > 30) ? "This Field Has To Be 3 to 30 Characters Long" : ""
             })
         }
+        else if (e.target.name === "ownerType") {
+            setownerType(e.target.value)
+        }
     }
 
     const Registerlocation = async () => {
@@ -115,7 +120,7 @@ function AdminPage2() {
         fielddata.append("price", price)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertLocation/',
+            url: `http://localhost:8000/api/insertLocation/${ownerType}/`,
             data: fielddata
         }).then((res) => {
             if (res.data === "A Location With This Name Already Exists") {
@@ -139,6 +144,9 @@ function AdminPage2() {
                 setSubmitErr(res.data)
             }
             else if (res.data === "Please Choose A Service") {
+                setSubmitErr(res.data)
+            }
+            else if (res.data === "Please Choose An Owner Type") {
                 setSubmitErr(res.data)
             }
             else {
@@ -228,20 +236,30 @@ function AdminPage2() {
 
                 <div className='daaata row'>
 
-                    <div class="detaaa col-5">
 
-                        <input type="text" className="detaaalzzz" onChange={(e) => changedata(e)} name="address" value={address} required aria-describedby="emailHelp" placeholder="Enter location address" />
-                        <p className='text-danger'>{errdata.addresserr}</p>
-
-                    </div>
                     <div class="detaaa col-5">
 
                         <input type="text" class="detaaalzzz" onChange={(e) => changedata(e)} name="owner" value={owner} required aria-describedby="emailHelp" placeholder="Enter Owner's Username" />
                         <p className='text-danger'>{errdata.ownererr}</p>
 
                     </div>
+                    <div class="detaaa col-5">
+
+                        <select required value={ownerType} class="detaaalzzz" onChange={(e) => changedata(e)} name="ownerType" aria-label="Default select example">
+                            <option selected value="default">Owner Type</option>
+                            <option value="user">User</option>
+                            <option value="vet">Vet</option>
+
+                        </select>
 
 
+                    </div>
+                    <div class="detaaa col-5">
+
+                        <input type="text" className="detaaalzzz" onChange={(e) => changedata(e)} name="address" value={address} required aria-describedby="emailHelp" placeholder="Enter location address" />
+                        <p className='text-danger'>{errdata.addresserr}</p>
+
+                    </div>
 
                 </div>
 
@@ -359,7 +377,7 @@ function AdminPage2() {
                 <p className='text-danger'>{submitErr}</p>
                 <button onClick={Registerlocation} type="submit" disabled={errdata.nameerr || errdata.emailerr || errdata.mobileerr
                     || errdata.addresserr || errdata.work_hours_starterr
-                    || errdata.work_hours_enderr || errdata.ownererr || errdata.priceerr} className='buttoooon' id='sub'>Submit</button>
+                    || errdata.work_hours_enderr || errdata.ownererr || errdata.priceerr || errdata.ownerTypeerr} className='buttoooon' id='sub'>Submit</button>
 
 
 

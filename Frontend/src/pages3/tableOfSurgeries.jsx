@@ -5,6 +5,7 @@ import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { Link } from "react-router-dom";
 import Table from '../Components/ClassTable';
 import { useSelector, useDispatch, shallowEqual } from 'react-redux'
+import { useHistory } from "react-router-dom";
 
 import '../pages/PagesStatic/NewSchedule.css'
 
@@ -13,6 +14,8 @@ import { changeUser, changeVet, changeLogged, changeLoggedType } from '../store/
 
 
 function TableOfSurgries() {
+    const history=useHistory()
+
     const dispatch = useDispatch()
     const loggedUser = useSelector((state) => state.loggedUser);
     const currentVet = useSelector((state) => state.currentVet);
@@ -99,12 +102,9 @@ function TableOfSurgries() {
             data: formdata2
         })
             .then((data) => {
-                if (data.data === "you can't decline before 24 hours") {
+                if (data.data === "you cant decline before 24 hours") {
                     setDeclineErr("you can't decline before 24 hours")
                     document.getElementById(`errdeclinePara${e.target.id}`).innerText = "you can't decline before 24 hours"
-
-                } else if (data.data === "date passed") {
-                    setdateleft(true)
 
                 }
                 else {
@@ -112,6 +112,7 @@ function TableOfSurgries() {
                     console.log(data.data)
                     setshowdata("none")
                     console.log("done sir")
+                    history.push("/")
 
                 }
                 // history.push("/")
