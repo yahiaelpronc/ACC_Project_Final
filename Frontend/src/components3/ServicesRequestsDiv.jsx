@@ -82,11 +82,12 @@ function ServicesRequestsDiv(props) {
 
     const todayYear=mytoday.getFullYear()
     const todayMonth=mytoday.getMonth()+1
-    const todayDay=mytoday.getDay()
+    const todayDay=mytoday.getDate()
 
     const dayDiff=dateday-todayDay
     const MonthDiff=dateMonth-todayMonth
     const yearDiff=dateYear-todayYear
+    console.log(todayYear,todayMonth,todayDay,"myyyyyyyyyyyyyyyyyyyyyy")
     console.log("our date today",dayDiff)
     console.log("our date month today",MonthDiff)
     console.log("our date Year today",yearDiff)

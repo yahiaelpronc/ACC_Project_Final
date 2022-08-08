@@ -411,7 +411,7 @@ function NavbarComponent() {
                       <h4 className="card-title"><strong className="text-white"
                         id="receiver-name"><i class="fa-solid fa-circle" style={{ color: `${isOnlineColor1}` }}></i> {currentVet1}</strong></h4>
                       {userType === "user" ?
-                        <Link className="btn btn-xs btn-secondary" to={`SendSurgeryUser/${currentVet1}`} data-abc="true">Request Surgery</Link>
+                        <Link className="btn btn-xs btn-secondary" to={`SendSurgeryUser/${currentVet1}`} data-abc="true">Request Assessment</Link>
                         :
                         <Link className="btn btn-xs btn-secondary" to="MedicationAdmin2" data-abc="true">Prescribe Medication</Link>
                       }

@@ -241,7 +241,7 @@ function Emergency() {
                                     <div className="card-header">
                                         <h4 className="card-title"><strong className="text-white"
                                             id="receiver-name"><i class="fa-solid fa-circle" style={{ color: `${isOnlineColor}` }}></i> {currentVet}</strong></h4>
-                                        <Link className="btn btn-xs btn-secondary" to={`SendSurgeryUser/${currentVet}`} data-abc="true">Request Surgery</Link>
+                                        <Link className="btn btn-xs btn-secondary" to={`SendSurgeryUser/${currentVet}`} data-abc="true">Request Assessment</Link>
                                         <button type="button" className="btn-close" aria-label="Close" onClick={(e) => closeWindow(e)}>
                                         </button>
                                     </div>

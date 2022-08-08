@@ -81,7 +81,7 @@ function ServicesResponsesDiv(props) {
 
     const todayYear=mytoday.getFullYear()
     const todayMonth=mytoday.getMonth()+1
-    const todayDay=mytoday.getDay()
+    const todayDay=mytoday.getDate()
 
     const dayDiff=dateday-todayDay
     const MonthDiff=dateMonth-todayMonth

@@ -32,6 +32,8 @@ function NewSchedule() {
     const [price, setPrice] = useState()
     const [date, setDate] = useState()
     const [Surgery_Operation, setSurgery_Operation] = useState()
+    const [reason,setreason]=useState()
+    const [showreason,setshowreason]=useState("none")
 
     const [errdata, seterrdata] = useState({
         usernameErr: "",
@@ -129,13 +131,17 @@ function NewSchedule() {
 
     }
 
+    const displayReason=()=>{
+        setshowreason("block")
+    }
 
 
 
     const VetCancelSurgery = async (e) => {
-        e.preventDefault()
+        // e.preventDefault()
         let formdata2 = new FormData()
         formdata2.append("statusVet", "declined")
+        formdata2.append("reasonVet", reason)
         await axios({
             method: 'POST',
             url: `http://localhost:8000/api/updateOperationStatusVet/${myid}/`,
@@ -247,6 +253,12 @@ function NewSchedule() {
                                     <input placeholder="Operation" type="text" className="inputs" onChange={(e) => setSurgery_Operation(e.target.value)} name='Surgery_Operation' value={Surgery_Operation} required />
 
                                 </li>
+                                <li className="list-group-item" style={{ display: showreason }}>
+                                            <label className="sp text-danger" htmlFor="">Reason Of Decline:</label>
+                                            <input id="reasonInput" placeholder="Reason" type="text" className="inputs" onChange={(e) => setreason(e.target.value)} required />
+                                           
+                                            <div className="d-flex justify-content-end"><button  onClick={(e) => VetCancelSurgery(e)} className="btn btn-danger">Confirm</button></div>
+                                </li>
                             </ul>
                         </div>
                     </div>
@@ -255,7 +267,7 @@ function NewSchedule() {
             <Table medications={medication} />
             <div className="buttons">
                 <button onClick={(e) => updateSurgery(e)} className="btn bb ">Accept Surgery</button>
-                <button onClick={(e) => VetCancelSurgery(e)} className="btn bb">Deny Surgery</button>
+                <button onClick={() => displayReason()} className="btn bb">Deny Surgery</button>
             </div>
 
         </>
