@@ -1,12 +1,10 @@
-
-
-
 import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import ServicesResponsesDiv from '../components3/ServicesResponsesDiv'
+import {host_var} from "../vars_react"
 
 function UserServiceResponses(){
     const loggedUser = useSelector((state) => state.loggedUser);
@@ -14,7 +12,7 @@ function UserServiceResponses(){
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/getServicesResponses/${loggedUser.username}/`)
+        axios.get(`${host_var}/api/getServicesResponses/${loggedUser.username}/`)
         .then((res)=> setRequests(res.data))
         .catch((Err)=> console.log(Err))
 

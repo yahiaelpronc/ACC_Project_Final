@@ -8,6 +8,7 @@ import './ComponentStatic/navbar.css';
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {host_var} from "../vars_react"
 function NavbarComponent() {
 
   const loggedUser = useSelector((state) => state.loggedUser);
@@ -47,7 +48,7 @@ function NavbarComponent() {
     setmedication_notifications(0)
     setservice_notifications(0)
     setsurgery_notifications(0)
-    axios.get(`http://localhost:8000/api/getAllMessagesAssociated/${loggedUser.username}/`)
+    axios.get(`${host_var}/api/getAllMessagesAssociated/${loggedUser.username}/`)
       .then((res) => {
         console.log("Messages : ", res.data)
         setMessages1(res.data)
@@ -58,7 +59,7 @@ function NavbarComponent() {
   }, [loggedUser]);
   useEffect(() => {
     if (userType === "user") {
-      axios.get(`http://localhost:8000/api/findvet/${currentVet1}/`)
+      axios.get(`${host_var}/api/findvet/${currentVet1}/`)
         .then((res) => {
           setvetFullData1(res.data)
           console.log(res.data)
@@ -67,7 +68,7 @@ function NavbarComponent() {
         .catch((err) => console.log(err))
     }
     else {
-      axios.get(`http://localhost:8000/api/finduser/${currentVet1}/`)
+      axios.get(`${host_var}/api/finduser/${currentVet1}/`)
         .then((res) => {
           setvetFullData1(res.data)
           console.log(res.data)
@@ -114,7 +115,7 @@ function NavbarComponent() {
     setMessages1([])
     setIntervalVariable1(
       setInterval(function () {
-        axios.get(`http://localhost:8000/api/getAllMessages/${loggedUser.username}/${e.target.id}`)
+        axios.get(`${host_var}/api/getAllMessages/${loggedUser.username}/${e.target.id}`)
           .then((res) => {
             // console.log(res.data)
             setMessages1(res.data)
@@ -145,7 +146,7 @@ function NavbarComponent() {
     formField.append('receiver', currentVet1)
     await axios({
       method: 'post',
-      url: 'http://127.0.0.1:8000/api/addMessage/',
+      url: `${host_var}/api/addMessage/`,
       data: formField
     }).then((response) => console.log(response.data))
       .catch((err) => console.log(err))
@@ -172,7 +173,7 @@ function NavbarComponent() {
     setmedication_notifications(0)
     setservice_notifications(0)
     setsurgery_notifications(0)
-    axios.get(`http://localhost:8000/api/countNotifications/${loggedUser.username}/`)
+    axios.get(`${host_var}/api/countNotifications/${loggedUser.username}/`)
       .then((res) => {
         setnotifications(res.data)
         console.log("Notifications ", res.data)
@@ -197,7 +198,7 @@ function NavbarComponent() {
   }
   function deleteNotifications(e) {
     if (e.target.name === "surgeryNotifications") {
-      axios.delete(`http://localhost:8000/api/deleteNotifications/${loggedUser.username}/surgery/`)
+      axios.delete(`${host_var}/api/deleteNotifications/${loggedUser.username}/surgery/`)
         .then((res) => {
           getNotifications()
         }
@@ -205,7 +206,7 @@ function NavbarComponent() {
         .catch((err) => console.log(err))
     }
     else if (e.target.name === "serviceNotifications") {
-      axios.delete(`http://localhost:8000/api/deleteNotifications/${loggedUser.username}/service/`)
+      axios.delete(`${host_var}/api/deleteNotifications/${loggedUser.username}/service/`)
         .then((res) => {
           getNotifications()
         }
@@ -213,7 +214,7 @@ function NavbarComponent() {
         .catch((err) => console.log(err))
     }
     else {
-      axios.delete(`http://localhost:8000/api/deleteNotifications/${loggedUser.username}/medication/`)
+      axios.delete(`${host_var}/api/deleteNotifications/${loggedUser.username}/medication/`)
         .then((res) => {
           getNotifications()
         }

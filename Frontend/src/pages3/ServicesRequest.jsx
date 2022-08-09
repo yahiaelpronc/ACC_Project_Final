@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect } from 'react'
 import ServicesRequestsDiv from '../components3/ServicesRequestsDiv'
+import {host_var} from "../vars_react"
 
 function ServicesRequest(){
     const loggedUser = useSelector((state) => state.loggedUser);
@@ -14,7 +15,7 @@ function ServicesRequest(){
 
 
     useEffect(()=>{
-        axios.get(`http://localhost:8000/api/getServicesRequests/${loggedUser.username}/`)
+        axios.get(`${host_var}/api/getServicesRequests/${loggedUser.username}/`)
         .then((res)=> setRequests(res.data))
         .catch((Err)=> console.log(Err))
 

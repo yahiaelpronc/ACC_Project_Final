@@ -5,11 +5,12 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeCurrentLocation } from '../store/actions/action'
 import Cards from "../Components/ClassCard";
+import {host_var} from "../vars_react"
 function DetailsLocations() {
   const [currentLocationDetails, setCurrentLocationDetails] = useState([])
   useEffect(() => {
     console.log(window.location.href.split("/")[4])
-    axios.get(`http://127.0.0.1:8000/api/locationDetails/${window.location.href.split("/")[4]}/`)
+    axios.get(`${host_var}/api/locationDetails/${window.location.href.split("/")[4]}/`)
       .then((res) => setCurrentLocationDetails(res.data))
       .catch((err) => console.log(err))
   }, [])

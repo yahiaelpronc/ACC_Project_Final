@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType } from '../store/actions/action'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {host_var} from "../vars_react"
 function UserRegister() {
     const history = useHistory()
     const emailRegex = /\S+@\S+\.\S+/;
@@ -400,7 +401,7 @@ function UserRegister() {
         formField.append("profile_pic", image)
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/insertVet/',
+            url: `${host_var}/api/insertVet/`,
             data: formField
         }).then((res) => {
             if (res.data === "Username Already Exists") {

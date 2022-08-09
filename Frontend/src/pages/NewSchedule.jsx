@@ -3,13 +3,13 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import './PagesStatic/NewSchedule.css';
 import Table from "../Components/ClassTable";
 // mostafa  import 
-
 import { useParams } from "react-router-dom"
 import axios from 'axios';
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import React, { useEffect } from "react";
 import { useState } from 'react'
+import {host_var} from "../vars_react"
 
 
 
@@ -49,7 +49,7 @@ function NewSchedule() {
         facebook_linkErr: "",
     })
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/findSurgery/${myid}/`)
+        axios.get(`${host_var}/api/findSurgery/${myid}/`)
             .then((res) => {
                 setmySurgery(res.data)
                 setDataCame(true)
@@ -62,7 +62,7 @@ function NewSchedule() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/findSpecificAnimal/${mySurgery.animalName}/`)
+        axios.get(`${host_var}/api/findSpecificAnimal/${mySurgery.animalName}/`)
             .then((res) => {
                 setMyAnimal(res.data)
                 getAge()
@@ -96,7 +96,7 @@ function NewSchedule() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getMedication/${mySurgery.animalName}/`)
+        axios.get(`${host_var}/api/getMedication/${mySurgery.animalName}/`)
             .then((res) => setMedication(res.data))
             .catch((err) => console.log(err))
     }, [dataCame])
@@ -116,7 +116,7 @@ function NewSchedule() {
 
         await axios({
             method: 'post',
-            url: `http://127.0.0.1:8000/api/SurVetUpdates/${myid}/`,
+            url: `${host_var}/api/SurVetUpdates/${myid}/`,
             data: dataField
         }).then((res) => {
             sendNotification(mySurgery.owner, "surgery")
@@ -144,7 +144,7 @@ function NewSchedule() {
         formdata2.append("reasonVet", reason)
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateOperationStatusVet/${myid}/`,
+            url: `${host_var}/api/updateOperationStatusVet/${myid}/`,
             data: formdata2
         })
             .then((data) => {
@@ -191,7 +191,7 @@ function NewSchedule() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

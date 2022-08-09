@@ -151,8 +151,7 @@ STATICFILES_DIRS = [
 
 MEDIA_URL = '/'
 MEDIA_ROOT = os.path.join(
-    'C:/Users/fouad/Desktop/acc-react/src/media/profileImages')
-    # 'G:/Work/GithubRepos/new_ACC/acc-react/src/media/profileImages')
+    'G:/Work/GithubRepos/ACC_Project_Final/Frontend/src/media/profileImages')
 # 'D:/programming/ITI/ProjectITIFinal/acc-react/src/media/profileImages')
 # D:/programming/ITI/ProjectITIFinal/
 # D:/programming/ITI/ProjectITIFinal/acc-react/src/media/profileImages
@@ -170,5 +169,5 @@ EMAIL_HOST_USER = varX
 EMAIL_HOST_PASSWORD = varY
 
 CORS_ORIGIN_WHITELIST = [
-    "http://localhost:3000",
+    react_domain,
 ]

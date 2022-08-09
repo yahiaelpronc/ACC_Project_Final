@@ -12,6 +12,7 @@ import { useHistory } from "react-router-dom";
 
 
 import { useState } from 'react'
+import {host_var} from "../vars_react"
 
 
 
@@ -29,7 +30,7 @@ function RequestSur() {
     const [Surgery_Operation, setSurgery_Operation] = useState()
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/findRequest/${myid}/`)
+        axios.get(`${host_var}/api/findRequest/${myid}/`)
             .then((res) => {
                 setRequest(res.data)
                 setDataCame(true)
@@ -45,7 +46,7 @@ function RequestSur() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/findSpecificAnimal/${Request.user}/${Request.animalName}/`)
+        axios.get(`${host_var}/api/findSpecificAnimal/${Request.user}/${Request.animalName}/`)
             .then((res) => {
                 setMyAnimal(res.data)
                 getAge()
@@ -79,7 +80,7 @@ function RequestSur() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getMedication/${Request.animalName}/`)
+        axios.get(`${host_var}/api/getMedication/${Request.animalName}/`)
             .then((res) => setMedication(res.data))
             .catch((err) => console.log(err))
     }, [dataCame])
@@ -99,7 +100,7 @@ function RequestSur() {
         dataField.append("owner", Request.user)
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/insertSurgry/',
+            url: `${host_var}/api/insertSurgry/`,
             data: dataField
         }).then((res) =>
             history.push("/")
@@ -118,7 +119,7 @@ function RequestSur() {
         formdata1.append("statusVet", "accepted")
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateRequestStatusVet/${myid}/`,
+            url: `${host_var}/api/updateRequestStatusVet/${myid}/`,
             data: formdata1
         })
             .then((data) =>
@@ -134,7 +135,7 @@ function RequestSur() {
         formdata2.append("statusVet", "declined")
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateRequestStatusVet/${myid}/`,
+            url: `${host_var}/api/updateRequestStatusVet/${myid}/`,
             data: formdata2
         })
             .then((data) => {

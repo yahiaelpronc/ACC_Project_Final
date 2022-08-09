@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { useHistory } from "react-router-dom";
 import { useParams } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 
 
@@ -24,7 +25,7 @@ function SendSurgeryUser() {
 
     const [animals, setanimals] = useState([])
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/findAnimals/${loggedUser.username}/`)
+        axios.get(`${host_var}/api/findAnimals/${loggedUser.username}/`)
             .then((res) => {
                 console.log(res.data)
                 setanimals(res.data)
@@ -42,7 +43,7 @@ function SendSurgeryUser() {
 
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/insertSurgry/',
+            url: `${host_var}/api/insertSurgry/`,
             data: fielddata
         }).then((res) => {
             sendNotification(currentVet.vetUsername, "surgery")
@@ -61,7 +62,7 @@ function SendSurgeryUser() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

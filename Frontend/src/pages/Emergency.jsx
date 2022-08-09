@@ -8,6 +8,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType, changcurrentPage } from '../store/actions/action'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {host_var} from "../vars_react"
 function Emergency() {
     const loggedUser = useSelector((state) => state.loggedUser);
     const currentVet = useSelector((state) => state.currentVet);
@@ -33,7 +34,7 @@ function Emergency() {
     const dispatch = useDispatch()
     useEffect(() => () => dispatch(changcurrentPage("")), []);
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/findvet/${currentVet}/`)
+        axios.get(`${host_var}/api/findvet/${currentVet}/`)
             .then((res) => {
                 setVetFullData(res.data)
                 console.log(res.data)
@@ -48,7 +49,7 @@ function Emergency() {
     }, [messages])
     useEffect(() => {
         dispatch(changcurrentPage("emergency"))
-        axios.get("http://localhost:8000/api/listvets/")
+        axios.get(`${host_var}/api/listvets/`)
             .then((res) => {
                 console.log(res.data)
                 setVets(res.data)
@@ -56,7 +57,7 @@ function Emergency() {
             }
             )
             .catch((err) => console.log(err))
-        axios.get("http://localhost:8000/api/listlocation/")
+        axios.get(`${host_var}/api/listlocation/`)
             .then((res) => {
                 console.log(res.data)
                 setLocations(res.data)
@@ -75,7 +76,7 @@ function Emergency() {
         formField.append('receiver', currentVet)
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/addMessage/',
+            url: `${host_var}/api/addMessage/`,
             data: formField
         }).then((response) => console.log(response.data))
             .catch((err) => console.log(err))
@@ -112,7 +113,7 @@ function Emergency() {
         setMessages([])
         setIntervalVariable(
             setInterval(function () {
-                axios.get(`http://localhost:8000/api/getAllMessages/${loggedUser.username}/${e.target.id}`)
+                axios.get(`${host_var}/api/getAllMessages/${loggedUser.username}/${e.target.id}`)
                     .then((res) => {
                         // console.log(res.data)
                         setMessages(res.data)

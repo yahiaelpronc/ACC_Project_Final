@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
+import {host_var} from "../vars_react"
 
 
 
@@ -19,7 +20,7 @@ function Myform(){
 
 
     // useEffect(()=>{
-    //     axios.post("http://127.0.0.1:8000/api/insert/")
+    //     axios.post("${host_var}/api/insert/")
     //     .then((res)=> res.data)
 
     // },[])
@@ -39,7 +40,7 @@ function Myform(){
         formField.append('profile_pic',profile_pic)
         await axios({
             method:'post',
-            url:'http://127.0.0.1:8000/api/insertUser/',
+            url:`${host_var}/api/insertUser/`,
             data:formField
 
         }).then((response)=> console.log(response.data))

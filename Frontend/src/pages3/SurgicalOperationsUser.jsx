@@ -11,6 +11,7 @@ import SurgericalResponseDiv from '../components3/SurgicalResponseDiv'
 import { useSelector, useDispatch } from 'react-redux'
 import '../pages/PagesStatic/NewSchedule.css'
 import { useHistory } from "react-router-dom";
+import {host_var} from "../vars_react"
 
 
 
@@ -28,7 +29,7 @@ function SurgicalOperationsUser() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getSurgicalOperations/${loggedUser.username}/`)
+        axios.get(`${host_var}/api/getSurgicalOperations/${loggedUser.username}/`)
             .then((res) => setOperations(res.data))
             .catch((Err) => console.log(Err))
     }, [])
@@ -42,7 +43,7 @@ function SurgicalOperationsUser() {
         formdata2.append("reasonUser", reason)
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateOperationStatusUser/${id}/`,
+            url: `${host_var}/api/updateOperationStatusUser/${id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -72,7 +73,7 @@ function SurgicalOperationsUser() {
         formdata2.append("statusUser", "accepted")
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateOperationStatusUser/${id}/`,
+            url: `${host_var}/api/updateOperationStatusUser/${id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -91,7 +92,7 @@ function SurgicalOperationsUser() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

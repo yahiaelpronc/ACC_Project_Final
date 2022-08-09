@@ -4,13 +4,14 @@ import { useParams } from "react-router-dom"
 import axios from "axios"
 import img1 from "../pages3/myimages/avatar-02.png"
 // import img2 from "../../../ACCDjango/media/profileImages/profileImages/avatar-05.png"
+import {host_var} from "../vars_react"
 
 function VetDetails(){
     const myparams=useParams()
     const [vet,setvet]=useState({})
 
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:8000/api/findvet/${myparams.username}`)
+        axios.get(`${host_var}/api/findvet/${myparams.username}`)
         .then((res)=> console.log(res.data))
         .catch((err)=> console.log(err))
 

@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import '../pages/PagesStatic/NewSchedule.css'
+import {host_var} from "../vars_react"
 
 
 
@@ -18,7 +19,7 @@ function ServicesRequestsDiv(props) {
         formdata2.append("statusOwner", "accepted")
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateSrviceStatusOwner/${props.id}/`,
+            url: `${host_var}/api/updateSrviceStatusOwner/${props.id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -38,7 +39,7 @@ function ServicesRequestsDiv(props) {
         formdata2.append("reasonVet", reason)
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateSrviceStatusOwner/${props.id}/`,
+            url: `${host_var}/api/updateSrviceStatusOwner/${props.id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -59,7 +60,7 @@ function ServicesRequestsDiv(props) {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

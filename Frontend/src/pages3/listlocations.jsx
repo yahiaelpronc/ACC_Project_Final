@@ -3,13 +3,14 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 
 function ListLocations() {
 
   const [location, setlocation] = useState([])
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/listlocation/")
+    axios.get(`${host_var}/api/listlocation/`)
       .then((res) => setlocation(res.data))
       .catch((err) => console.log(err))
   }, [])

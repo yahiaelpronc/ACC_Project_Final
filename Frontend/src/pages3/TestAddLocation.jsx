@@ -2,8 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import {host_var} from "../vars_react"
 function TestAddLocation() {
-    // http://localhost:8000/api/task-list/
+    // ${host_var}/api/task-list/
     const [userData, setUserData] = useState({
         name: "",
         email: "",

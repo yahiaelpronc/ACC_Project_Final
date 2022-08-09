@@ -2,6 +2,7 @@ import { useEffect, useState } from "react"
 import React from "react"
 import { useParams } from "react-router-dom"
 import axios from "axios"
+import {host_var} from "../vars_react"
 
 
 function UserDetails(){
@@ -9,7 +10,7 @@ function UserDetails(){
     const [user,setuser]=useState({})
 
     useEffect(()=>{
-        axios.get(`http://127.0.0.1:8000/api/finduser/${myparams.username}`)
+        axios.get(`${host_var}/api/finduser/${myparams.username}`)
         .then((res)=> setuser(res.data))
         .catch((err)=> console.log(err))
 

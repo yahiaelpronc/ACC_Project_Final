@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useHistory } from "react-router-dom";
 import './page3Static/Admin.css';
+import {host_var} from "../vars_react"
 
 function AdminPage2() {
 
@@ -120,7 +121,7 @@ function AdminPage2() {
         fielddata.append("price", price)
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/insertLocation/${ownerType}/`,
+            url: `${host_var}/api/insertLocation/${ownerType}/`,
             data: fielddata
         }).then((res) => {
             if (res.data === "A Location With This Name Already Exists") {

@@ -3,13 +3,14 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 
 function ListVets(){
 
     const [Vets,setvets]=useState([])
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/listvets/")
+        axios.get(`${host_var}/api/listvets/`)
         .then((res) => setvets(res.data))
         .catch((err)=> console.log(err))
 

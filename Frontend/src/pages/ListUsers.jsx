@@ -2,8 +2,9 @@ import React from 'react'
 import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
+import {host_var} from "../vars_react"
 function ListUsers() {
-    // http://localhost:8000/api/task-list/
+    // ${host_var}/api/task-list/
     const [userData, setUserData] = useState({
         username: "",
         willDelete: false,
@@ -29,15 +30,15 @@ function ListUsers() {
     const submitData = (e) => {
         e.preventDefault()
         if (userData.willDelete) {
-            axios.delete("http://localhost:8000/api/users-delete/" + userData.username)
+            axios.delete(`${host_var}/api/users-delete/` + userData.username)
                 .then((res) => setUsers(res.data))
                 .catch((err) => console.log(err))
         } else if (userData.displayAll) {
-            axios.get("http://localhost:8000/api/users-list/")
+            axios.get(`${host_var}/api/users-list/`)
                 .then((res) => setUsers(res.data))
                 .catch((err) => console.log(err))
         } else {
-            axios.get("http://localhost:8000/api/users-list/" + userData.username)
+            axios.get(`${host_var}/api/users-list/` + userData.username)
                 .then((res) => setUsers(res.data))
                 .catch((err) => console.log(err))
         }

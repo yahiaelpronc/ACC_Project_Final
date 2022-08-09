@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react"
 import { useHistory } from "react-router-dom"
 import axios from "axios"
+import {host_var} from "../vars_react"
 
 
 function NewDetails() {
@@ -19,7 +20,7 @@ function NewDetails() {
     const [reqPeriod, setreqPeriod] = useState("")
     useEffect(() => {
         console.log(window.location.href.split("/")[4])
-        axios.get(`http://127.0.0.1:8000/api/locationDetails/${window.location.href.split("/")[4]}/`)
+        axios.get(`${host_var}/api/locationDetails/${window.location.href.split("/")[4]}/`)
             .then((res) => setCurrentLocationDetails(res.data))
             .catch((err) => console.log(err))
     }, [])
@@ -88,7 +89,7 @@ function NewDetails() {
         formField.append("AnimalType", reqType)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertServiceRequest/',
+            url: `${host_var}/api/insertServiceRequest/`,
             data: formField
         }).then((res) => {
             if (res.data === "Please Choose Animal Type" | res.data === "Please Choose Time Period") {
@@ -108,7 +109,7 @@ function NewDetails() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

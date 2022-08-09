@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType, changeCurrentUser } from '../store/actions/action'
 import { useHistory } from "react-router-dom"
 
+import {host_var} from "../vars_react"
 function MedicationAdmin2() {
     const history2 = useHistory()
     const dispatch = useDispatch()
@@ -26,7 +27,7 @@ function MedicationAdmin2() {
     // GET ANIMALS OF USER
     useEffect(() => {
         setAnimals([])
-        axios.get(`http://localhost:8000/api/listAnimals/${currentVet}`)
+        axios.get(`${host_var}/api/listAnimals/${currentVet}`)
             .then((res) => {
                 setAnimals(res.data)
             }
@@ -35,7 +36,7 @@ function MedicationAdmin2() {
     }, [])
     // GET PAST MEDS WHEN SELECTING AN ANIMAL
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getMedication/${userData.animalName}/`)
+        axios.get(`${host_var}/api/getMedication/${userData.animalName}/`)
             .then((res) => {
                 console.log(res.data)
                 setPastMedications(res.data)
@@ -95,7 +96,7 @@ function MedicationAdmin2() {
         formField.append('adminstrationRoute', userData.adminstrationRoute)
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/addMedication/',
+            url: `${host_var}/api/addMedication/`,
             data: formField
         }).then((response) => {
             sendNotification(String(userData.animalName).split("_")[1], "medication")
@@ -109,7 +110,7 @@ function MedicationAdmin2() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

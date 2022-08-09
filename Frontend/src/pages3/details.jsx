@@ -1,6 +1,7 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link, useParams } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 function LocationDetails(){
 
@@ -9,7 +10,7 @@ function LocationDetails(){
     const [details,setdetails]=useState({})
     useEffect((id)=>{
 
-        axios.get(`http://127.0.0.1:8000/api/locationDetails/${myid.id}`)
+        axios.get(`${host_var}/api/locationDetails/${myid.id}`)
         .then((res)=>setdetails(res.data))
         .catch((err)=> console.log(err))
     },[])

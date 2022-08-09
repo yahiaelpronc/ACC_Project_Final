@@ -3,13 +3,14 @@
 import axios from "axios"
 import React, { useEffect, useState } from "react"
 import { Link } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 
 function ListUsers(){
 
     const [users,setusers]=useState([])
     useEffect(()=>{
-        axios.get("http://127.0.0.1:8000/api/listusers/")
+        axios.get(`${host_var}/api/listusers/`)
         .then((res) => setusers(res.data))
         .catch((err)=> console.log(err))
 

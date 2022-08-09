@@ -11,6 +11,7 @@ import '../pages/PagesStatic/NewSchedule.css'
 
 import axios from 'axios';
 import { changeUser, changeVet, changeLogged, changeLoggedType } from '../store/actions/action'
+import {host_var} from "../vars_react"
 
 
 function TableOfSurgries() {
@@ -40,7 +41,7 @@ function TableOfSurgries() {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     }
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getSurgery/${loggedUser.username}/`)
+        axios.get(`${host_var}/api/getSurgery/${loggedUser.username}/`)
             .then((res) => {
                 setSurgries(res.data)
                 console.log("Surgery Res Data : ", res.data)
@@ -53,7 +54,7 @@ function TableOfSurgries() {
 
     if (Surgeries.length > 0 && Finished) {
         for (let i = 0; i < length; i++) {
-            axios.get(`http://localhost:8000/api/findSpecificAnimal/${Surgeries[i].animalName}/`)
+            axios.get(`${host_var}/api/findSpecificAnimal/${Surgeries[i].animalName}/`)
                 .then((res) => {
                     setWeights(current => [...current, res.data.weight]);
                     setSpecies(current => [...current, res.data.species]);
@@ -98,7 +99,7 @@ function TableOfSurgries() {
 
         await axios({
             method: 'POST',
-            url: `http://localhost:8000/api/updateOperationStatusVet/${id}/`,
+            url: `${host_var}/api/updateOperationStatusVet/${id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -129,7 +130,7 @@ function TableOfSurgries() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertNotifications/',
+            url: `${host_var}/api/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

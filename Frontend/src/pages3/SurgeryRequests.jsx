@@ -7,6 +7,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import RequestDiv from '../components3/RequestDiv'
 import { useSelector, useDispatch } from 'react-redux'
+import {host_var} from "../vars_react"
 
 
 
@@ -17,7 +18,7 @@ function SurgeryRequest() {
 
 
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getRequests/${loggedUser.username}/`)
+        axios.get(`${host_var}/api/getRequests/${loggedUser.username}/`)
             .then((res) => setRequests(res.data))
             .catch((err) => console.log(err))
 

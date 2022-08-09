@@ -3,6 +3,7 @@ import axios from 'axios'
 import { useState } from 'react'
 import { useEffect } from 'react'
 import avatar from './media/profileImages/1_bwjRF9H.jpg';
+import {host_var} from "../vars_react"
 function TestAddAnimal() {
     const [userData, setUserData] = useState({
         animalName: "",
@@ -78,7 +79,7 @@ function TestAddAnimal() {
     // GET USER TEST AXIOS
     const submitData = (e) => {
         e.preventDefault()
-        axios.get("http://localhost:8000/api/finduser/zoldeek")
+        axios.get(`${host_var}/api/finduser/zoldeek`)
             .then((res) => {
                 setUsers(res.data)
                 setuserFetched(true)

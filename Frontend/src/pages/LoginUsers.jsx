@@ -2,6 +2,7 @@ import React from "react";
 import Cards from "../Components/ClassCard";
 import Button from "../Components/ClassButton";
 import { Link } from "react-router-dom";
+import {host_var} from "../vars_react"
 function LoginUsers() {
 
 

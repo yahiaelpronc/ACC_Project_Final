@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react"
 import axios from "axios"
 import { useHistory } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 
 
@@ -23,7 +24,7 @@ function VetForm2(){
 
 
     // useEffect(()=>{
-    //     axios.post("http://127.0.0.1:8000/api/insert/")
+    //     axios.post(`${host_var}/api/insert/`)
     //     .then((res)=> res.data)
 
     // },[])
@@ -45,7 +46,7 @@ function VetForm2(){
         formField.append('specialization',specialization)
         await axios({
             method:'post',
-            url:'http://127.0.0.1:8000/api/insertVet/',
+            url:`${host_var}/api/insertVet/`,
             data:formField
 
         }).then((response)=> console.log(response.data))

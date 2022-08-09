@@ -9,6 +9,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType } from '../store/actions/action'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {host_var} from "../vars_react"
 function UserRegister() {
     const history = useHistory()
     const [governorates, setGovernorates] = useState(
@@ -376,7 +377,7 @@ function UserRegister() {
         // }
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/insertUser/',
+            url: `${host_var}/api/insertUser/`,
             data: formField
         }).then((res) => {
             if (res.data === "Username Already Exists") {

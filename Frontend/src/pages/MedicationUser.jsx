@@ -6,6 +6,7 @@ import { useEffect } from 'react'
 import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType, changeCurrentUser } from '../store/actions/action'
 import { useHistory } from "react-router-dom"
+import {host_var} from "../vars_react"
 
 function MedicationUser() {
     const history2 = useHistory()
@@ -26,7 +27,7 @@ function MedicationUser() {
     // GET ANIMALS OF USER
     useEffect(() => {
         setAnimals([])
-        axios.get(`http://localhost:8000/api/listAnimals/${loggedUser.username}`)
+        axios.get(`${host_var}/api/listAnimals/${loggedUser.username}`)
             .then((res) => {
                 setAnimals(res.data)
             }
@@ -35,7 +36,7 @@ function MedicationUser() {
     }, [])
     // GET PAST MEDS WHEN SELECTING AN ANIMAL
     useEffect(() => {
-        axios.get(`http://localhost:8000/api/getMedication/${userData.animalName}/`)
+        axios.get(`${host_var}/api/getMedication/${userData.animalName}/`)
             .then((res) => {
                 console.log(res.data)
                 setPastMedications(res.data)
@@ -95,7 +96,7 @@ function MedicationUser() {
         formField.append('adminstrationRoute', userData.adminstrationRoute)
         await axios({
             method: 'post',
-            url: 'http://127.0.0.1:8000/api/addMedication/',
+            url: `${host_var}/api/addMedication/`,
             data: formField
         }).then((response) => history2.push("/"))
             .catch((err) => console.log(err))

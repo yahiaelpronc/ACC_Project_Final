@@ -7,6 +7,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType, changeCurrentUser } from '../store/actions/action'
 import { useHistory } from "react-router-dom"
 import { Link } from "react-router-dom";
+import {host_var} from "../vars_react"
 
 function Notverified() {
     return (<>

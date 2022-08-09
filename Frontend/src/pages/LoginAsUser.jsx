@@ -11,6 +11,7 @@ import { useSelector, useDispatch } from 'react-redux'
 import { changeUser, changeVet, changeLogged, changeLoggedType } from '../store/actions/action'
 import axios from 'axios'
 import { useState, useEffect } from 'react'
+import {host_var} from "../vars_react"
 function Login() {
     const dispatch = useDispatch()
     const history = useHistory()
@@ -29,7 +30,7 @@ function Login() {
     }
     const loginUser = (e) => {
         e.preventDefault()
-        axios.get(`http://localhost:8000/api/loginUser/${username}/${password}`)
+        axios.get(`${host_var}/api/loginUser/${username}/${password}`)
             .then((res) => {
                 if (res.data === "Incorrect Credintials") {
                     setResendErr("")
@@ -75,7 +76,7 @@ function Login() {
         }
     }
     function resendEmail(e) {
-        axios.get(`http://localhost:8000/api/resendEmail/${username}`)
+        axios.get(`${host_var}/api/resendEmail/${username}`)
             .then((res) => {
                 console.log(res.data)
                 if (res.data === "Email Sent") {

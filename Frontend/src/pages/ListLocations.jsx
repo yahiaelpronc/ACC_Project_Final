@@ -7,6 +7,7 @@ import 'bootstrap/dist/css/bootstrap.min.css';
 import { changeCurrentLocation } from '../store/actions/action'
 import { useSelector, useDispatch } from 'react-redux'
 import { Link } from "react-router-dom";
+import {host_var} from "../vars_react"
 
 function Locations() {
   const dispatch = useDispatch()
@@ -22,7 +23,7 @@ function Locations() {
       "North Sinai", "Port Said", "Qalyubia", "Qena", "Red Sea", "Sharqia", "Sohag", "South Sinai", "Suez"]
   )
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/listlocation/")
+    axios.get(`${host_var}/api/listlocation/`)
       .then((res) => setlocation(res.data))
       .catch((err) => console.log(err))
   }, [])

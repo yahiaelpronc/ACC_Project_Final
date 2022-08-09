@@ -40,6 +40,7 @@ import { changeCurrentLocation } from '../store/actions/action'
 import { useSelector, useDispatch } from 'react-redux'
 import { useEffect, useState } from "react"
 import axios from "axios"
+import {host_var} from "../vars_react"
 function Home() {
   const [locations, setlocation] = useState([])
   const [Vets, setVets] = useState([])
@@ -50,16 +51,16 @@ function Home() {
 
 
   useEffect(() => {
-    axios.get("http://127.0.0.1:8000/api/listlocation/")
+    axios.get(`${host_var}/api/listlocation/`)
       .then((res) => setlocation(res.data))
       .catch((err) => console.log(err))
-    axios.get("http://127.0.0.1:8000/api/listvets/")
+    axios.get(`${host_var}/api/listvets/`)
       .then((res) => setVets(res.data))
       .catch((err) => console.log(err))
-    axios.get("http://127.0.0.1:8000/api/listusers/")
+    axios.get(`${host_var}/api/listusers/`)
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err))
-    axios.get("http://127.0.0.1:8000/api/listservices/")
+    axios.get(`${host_var}/api/listservices/`)
       .then((res) => setServices(res.data))
       .catch((err) => console.log(err))
   }, [])

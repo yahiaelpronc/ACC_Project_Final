@@ -8,6 +8,7 @@ import './PagesStatic/AddAnimal.css';
 import { useSelector, useDispatch } from 'react-redux'
 
 import { useHistory } from "react-router-dom";
+import {host_var} from "../vars_react"
 
 function AddAnimal() {
     const history = useHistory()
@@ -100,7 +101,7 @@ function AddAnimal() {
         formField.append("female_state", female_state)
         await axios({
             method: 'POST',
-            url: 'http://localhost:8000/api/insertAnimal/',
+            url: `${host_var}/api/insertAnimal/`,
             data: formField
 
         }).then((res) => {
