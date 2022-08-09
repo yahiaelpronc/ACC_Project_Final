@@ -169,5 +169,5 @@ EMAIL_HOST_USER = varX
 EMAIL_HOST_PASSWORD = varY
 
 CORS_ORIGIN_WHITELIST = [
-    react_domain,
+    'http://localhost:3000',
 ]
