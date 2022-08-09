@@ -30,7 +30,7 @@ function Login() {
     }
     const loginUser = (e) => {
         e.preventDefault()
-        axios.get(`${host_var}/api/loginUser/${username}/${password}`)
+        axios.get(`${host_var}/loginUser/${username}/${password}`)
             .then((res) => {
                 if (res.data === "Incorrect Credintials") {
                     setResendErr("")
@@ -76,7 +76,7 @@ function Login() {
         }
     }
     function resendEmail(e) {
-        axios.get(`${host_var}/api/resendEmail/${username}`)
+        axios.get(`${host_var}/resendEmail/${username}`)
             .then((res) => {
                 console.log(res.data)
                 if (res.data === "Email Sent") {

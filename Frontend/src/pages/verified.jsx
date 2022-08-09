@@ -28,7 +28,7 @@ function Verified() {
     // GET ANIMALS OF USER
     useEffect(() => {
         setAnimals([])
-        axios.get(`${host_var}/api/listAnimals/${currentVet}`)
+        axios.get(`${host_var}/listAnimals/${currentVet}`)
             .then((res) => {
                 setAnimals(res.data)
             }
@@ -37,7 +37,7 @@ function Verified() {
     }, [])
     // GET PAST MEDS WHEN SELECTING AN ANIMAL
     useEffect(() => {
-        axios.get(`${host_var}/api/getMedication/${userData.animalName}/`)
+        axios.get(`${host_var}/getMedication/${userData.animalName}/`)
             .then((res) => {
                 console.log(res.data)
                 setPastMedications(res.data)
@@ -97,7 +97,7 @@ function Verified() {
         formField.append('adminstrationRoute', userData.adminstrationRoute)
         await axios({
             method: 'post',
-            url: `${host_var}/api/addMedication/`,
+            url: `${host_var}/addMedication/`,
             data: formField
         }).then((response) => history2.push("/"))
             .catch((err) => console.log(err))

@@ -23,7 +23,7 @@ function Locations() {
       "North Sinai", "Port Said", "Qalyubia", "Qena", "Red Sea", "Sharqia", "Sohag", "South Sinai", "Suez"]
   )
   useEffect(() => {
-    axios.get(`${host_var}/api/listlocation/`)
+    axios.get(`${host_var}/listlocation/`)
       .then((res) => setlocation(res.data))
       .catch((err) => console.log(err))
   }, [])

@@ -401,7 +401,7 @@ function UserRegister() {
         formField.append("profile_pic", image)
         await axios({
             method: 'post',
-            url: `${host_var}/api/insertVet/`,
+            url: `${host_var}/insertVet/`,
             data: formField
         }).then((res) => {
             if (res.data === "Username Already Exists") {

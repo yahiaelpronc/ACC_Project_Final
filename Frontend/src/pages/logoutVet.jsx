@@ -10,7 +10,7 @@ function Logout() {
     const loggedUser = useSelector((state) => state.loggedUser);
     const history = useHistory()
     useEffect(() => {
-        axios.get(`${host_var}/api/logoutVet/${loggedUser.username}`)
+        axios.get(`${host_var}/logoutVet/${loggedUser.username}`)
             .then((res) => {
                 console.log(res.data)
                 dispatch(changeUser([]))

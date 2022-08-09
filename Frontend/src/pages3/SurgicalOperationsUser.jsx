@@ -29,7 +29,7 @@ function SurgicalOperationsUser() {
 
 
     useEffect(() => {
-        axios.get(`${host_var}/api/getSurgicalOperations/${loggedUser.username}/`)
+        axios.get(`${host_var}/getSurgicalOperations/${loggedUser.username}/`)
             .then((res) => setOperations(res.data))
             .catch((Err) => console.log(Err))
     }, [])
@@ -43,7 +43,7 @@ function SurgicalOperationsUser() {
         formdata2.append("reasonUser", reason)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateOperationStatusUser/${id}/`,
+            url: `${host_var}/updateOperationStatusUser/${id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -73,7 +73,7 @@ function SurgicalOperationsUser() {
         formdata2.append("statusUser", "accepted")
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateOperationStatusUser/${id}/`,
+            url: `${host_var}/updateOperationStatusUser/${id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -92,7 +92,7 @@ function SurgicalOperationsUser() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

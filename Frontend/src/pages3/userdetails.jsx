@@ -10,7 +10,7 @@ function UserDetails(){
     const [user,setuser]=useState({})
 
     useEffect(()=>{
-        axios.get(`${host_var}/api/finduser/${myparams.username}`)
+        axios.get(`${host_var}/finduser/${myparams.username}`)
         .then((res)=> setuser(res.data))
         .catch((err)=> console.log(err))
 

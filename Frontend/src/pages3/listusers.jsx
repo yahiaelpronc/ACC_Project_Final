@@ -10,7 +10,7 @@ function ListUsers(){
 
     const [users,setusers]=useState([])
     useEffect(()=>{
-        axios.get(`${host_var}/api/listusers/`)
+        axios.get(`${host_var}/listusers/`)
         .then((res) => setusers(res.data))
         .catch((err)=> console.log(err))
 

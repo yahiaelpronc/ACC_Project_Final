@@ -20,7 +20,7 @@ function Myform(){
 
 
     // useEffect(()=>{
-    //     axios.post("${host_var}/api/insert/")
+    //     axios.post("${host_var}/insert/")
     //     .then((res)=> res.data)
 
     // },[])
@@ -40,7 +40,7 @@ function Myform(){
         formField.append('profile_pic',profile_pic)
         await axios({
             method:'post',
-            url:`${host_var}/api/insertUser/`,
+            url:`${host_var}/insertUser/`,
             data:formField
 
         }).then((response)=> console.log(response.data))

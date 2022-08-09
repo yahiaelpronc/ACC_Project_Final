@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import {host_var} from "../vars_react"
 function ListUsers() {
-    // ${host_var}/api/task-list/
+    // ${host_var}/task-list/
     const [userData, setUserData] = useState({
         username: "",
         willDelete: false,
@@ -30,15 +30,15 @@ function ListUsers() {
     const submitData = (e) => {
         e.preventDefault()
         if (userData.willDelete) {
-            axios.delete(`${host_var}/api/users-delete/` + userData.username)
+            axios.delete(`${host_var}/users-delete/` + userData.username)
                 .then((res) => setUsers(res.data))
                 .catch((err) => console.log(err))
         } else if (userData.displayAll) {
-            axios.get(`${host_var}/api/users-list/`)
+            axios.get(`${host_var}/users-list/`)
                 .then((res) => setUsers(res.data))
                 .catch((err) => console.log(err))
         } else {
-            axios.get(`${host_var}/api/users-list/` + userData.username)
+            axios.get(`${host_var}/users-list/` + userData.username)
                 .then((res) => setUsers(res.data))
                 .catch((err) => console.log(err))
         }

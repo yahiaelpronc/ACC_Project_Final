@@ -34,7 +34,7 @@ function Emergency() {
     const dispatch = useDispatch()
     useEffect(() => () => dispatch(changcurrentPage("")), []);
     useEffect(() => {
-        axios.get(`${host_var}/api/findvet/${currentVet}/`)
+        axios.get(`${host_var}/findvet/${currentVet}/`)
             .then((res) => {
                 setVetFullData(res.data)
                 console.log(res.data)
@@ -49,7 +49,7 @@ function Emergency() {
     }, [messages])
     useEffect(() => {
         dispatch(changcurrentPage("emergency"))
-        axios.get(`${host_var}/api/listvets/`)
+        axios.get(`${host_var}/listvets/`)
             .then((res) => {
                 console.log(res.data)
                 setVets(res.data)
@@ -57,7 +57,7 @@ function Emergency() {
             }
             )
             .catch((err) => console.log(err))
-        axios.get(`${host_var}/api/listlocation/`)
+        axios.get(`${host_var}/listlocation/`)
             .then((res) => {
                 console.log(res.data)
                 setLocations(res.data)
@@ -76,7 +76,7 @@ function Emergency() {
         formField.append('receiver', currentVet)
         await axios({
             method: 'post',
-            url: `${host_var}/api/addMessage/`,
+            url: `${host_var}/addMessage/`,
             data: formField
         }).then((response) => console.log(response.data))
             .catch((err) => console.log(err))
@@ -113,7 +113,7 @@ function Emergency() {
         setMessages([])
         setIntervalVariable(
             setInterval(function () {
-                axios.get(`${host_var}/api/getAllMessages/${loggedUser.username}/${e.target.id}`)
+                axios.get(`${host_var}/getAllMessages/${loggedUser.username}/${e.target.id}`)
                     .then((res) => {
                         // console.log(res.data)
                         setMessages(res.data)

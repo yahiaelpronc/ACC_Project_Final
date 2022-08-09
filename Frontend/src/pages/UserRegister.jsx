@@ -377,7 +377,7 @@ function UserRegister() {
         // }
         await axios({
             method: 'post',
-            url: `${host_var}/api/insertUser/`,
+            url: `${host_var}/insertUser/`,
             data: formField
         }).then((res) => {
             if (res.data === "Username Already Exists") {

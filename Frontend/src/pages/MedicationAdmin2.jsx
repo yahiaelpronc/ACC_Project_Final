@@ -27,7 +27,7 @@ function MedicationAdmin2() {
     // GET ANIMALS OF USER
     useEffect(() => {
         setAnimals([])
-        axios.get(`${host_var}/api/listAnimals/${currentVet}`)
+        axios.get(`${host_var}/listAnimals/${currentVet}`)
             .then((res) => {
                 setAnimals(res.data)
             }
@@ -36,7 +36,7 @@ function MedicationAdmin2() {
     }, [])
     // GET PAST MEDS WHEN SELECTING AN ANIMAL
     useEffect(() => {
-        axios.get(`${host_var}/api/getMedication/${userData.animalName}/`)
+        axios.get(`${host_var}/getMedication/${userData.animalName}/`)
             .then((res) => {
                 console.log(res.data)
                 setPastMedications(res.data)
@@ -96,7 +96,7 @@ function MedicationAdmin2() {
         formField.append('adminstrationRoute', userData.adminstrationRoute)
         await axios({
             method: 'post',
-            url: `${host_var}/api/addMedication/`,
+            url: `${host_var}/addMedication/`,
             data: formField
         }).then((response) => {
             sendNotification(String(userData.animalName).split("_")[1], "medication")
@@ -110,7 +110,7 @@ function MedicationAdmin2() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

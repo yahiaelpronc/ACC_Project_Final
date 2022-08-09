@@ -51,16 +51,16 @@ function Home() {
 
 
   useEffect(() => {
-    axios.get(`${host_var}/api/listlocation/`)
+    axios.get(`${host_var}/listlocation/`)
       .then((res) => setlocation(res.data))
       .catch((err) => console.log(err))
-    axios.get(`${host_var}/api/listvets/`)
+    axios.get(`${host_var}/listvets/`)
       .then((res) => setVets(res.data))
       .catch((err) => console.log(err))
-    axios.get(`${host_var}/api/listusers/`)
+    axios.get(`${host_var}/listusers/`)
       .then((res) => setUsers(res.data))
       .catch((err) => console.log(err))
-    axios.get(`${host_var}/api/listservices/`)
+    axios.get(`${host_var}/listservices/`)
       .then((res) => setServices(res.data))
       .catch((err) => console.log(err))
   }, [])

@@ -25,7 +25,7 @@ function SendSurgeryUser() {
 
     const [animals, setanimals] = useState([])
     useEffect(() => {
-        axios.get(`${host_var}/api/findAnimals/${loggedUser.username}/`)
+        axios.get(`${host_var}/findAnimals/${loggedUser.username}/`)
             .then((res) => {
                 console.log(res.data)
                 setanimals(res.data)
@@ -43,7 +43,7 @@ function SendSurgeryUser() {
 
         await axios({
             method: 'post',
-            url: `${host_var}/api/insertSurgry/`,
+            url: `${host_var}/insertSurgry/`,
             data: fielddata
         }).then((res) => {
             sendNotification(currentVet.vetUsername, "surgery")
@@ -62,7 +62,7 @@ function SendSurgeryUser() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

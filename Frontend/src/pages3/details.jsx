@@ -10,7 +10,7 @@ function LocationDetails(){
     const [details,setdetails]=useState({})
     useEffect((id)=>{
 
-        axios.get(`${host_var}/api/locationDetails/${myid.id}`)
+        axios.get(`${host_var}/locationDetails/${myid.id}`)
         .then((res)=>setdetails(res.data))
         .catch((err)=> console.log(err))
     },[])

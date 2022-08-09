@@ -15,7 +15,7 @@ function SurgericalResponseDiv(props) {
 
 
     const deleteResponse = async (id) => {
-        await axios.delete(`${host_var}/api/getSurgicalResponses/${id}/`)
+        await axios.delete(`${host_var}/getSurgicalResponses/${id}/`)
         history.push("/SurgicalOperationsUser")
     }
 
@@ -31,7 +31,7 @@ function SurgericalResponseDiv(props) {
     //     dataField.append("owner", loggedUser.username)
     //     await axios({
     //         method: 'post',
-    //         url: `${host_var}/api/insertSurgry/`,
+    //         url: `${host_var}/insertSurgry/`,
     //         data: dataField
     //     }).then((res) =>
     //         history.push("/SurgicalOperationsUser")
@@ -48,7 +48,7 @@ function SurgericalResponseDiv(props) {
         formdata2.append("statusUser", "accepted")
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateRequestStatusUser/${props.id}/`,
+            url: `${host_var}/updateRequestStatusUser/${props.id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -69,7 +69,7 @@ function SurgericalResponseDiv(props) {
         formdata2.append("statusUser", "declined")
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateRequestStatusUser/${props.id}/`,
+            url: `${host_var}/updateRequestStatusUser/${props.id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -90,7 +90,7 @@ function SurgericalResponseDiv(props) {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

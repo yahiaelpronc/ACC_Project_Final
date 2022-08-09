@@ -18,7 +18,7 @@ function SurgeryRequest() {
 
 
     useEffect(() => {
-        axios.get(`${host_var}/api/getRequests/${loggedUser.username}/`)
+        axios.get(`${host_var}/getRequests/${loggedUser.username}/`)
             .then((res) => setRequests(res.data))
             .catch((err) => console.log(err))
 

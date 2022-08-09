@@ -27,7 +27,7 @@ function MedicationUser() {
     // GET ANIMALS OF USER
     useEffect(() => {
         setAnimals([])
-        axios.get(`${host_var}/api/listAnimals/${loggedUser.username}`)
+        axios.get(`${host_var}/listAnimals/${loggedUser.username}`)
             .then((res) => {
                 setAnimals(res.data)
             }
@@ -36,7 +36,7 @@ function MedicationUser() {
     }, [])
     // GET PAST MEDS WHEN SELECTING AN ANIMAL
     useEffect(() => {
-        axios.get(`${host_var}/api/getMedication/${userData.animalName}/`)
+        axios.get(`${host_var}/getMedication/${userData.animalName}/`)
             .then((res) => {
                 console.log(res.data)
                 setPastMedications(res.data)
@@ -96,7 +96,7 @@ function MedicationUser() {
         formField.append('adminstrationRoute', userData.adminstrationRoute)
         await axios({
             method: 'post',
-            url: `${host_var}/api/addMedication/`,
+            url: `${host_var}/addMedication/`,
             data: formField
         }).then((response) => history2.push("/"))
             .catch((err) => console.log(err))

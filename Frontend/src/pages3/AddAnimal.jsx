@@ -101,7 +101,7 @@ function AddAnimal() {
         formField.append("female_state", female_state)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertAnimal/`,
+            url: `${host_var}/insertAnimal/`,
             data: formField
 
         }).then((res) => {

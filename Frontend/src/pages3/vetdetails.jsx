@@ -11,7 +11,7 @@ function VetDetails(){
     const [vet,setvet]=useState({})
 
     useEffect(()=>{
-        axios.get(`${host_var}/api/findvet/${myparams.username}`)
+        axios.get(`${host_var}/findvet/${myparams.username}`)
         .then((res)=> console.log(res.data))
         .catch((err)=> console.log(err))
 

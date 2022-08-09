@@ -41,7 +41,7 @@ function TableOfSurgries() {
         return new Promise(resolve => setTimeout(resolve, milliseconds))
     }
     useEffect(() => {
-        axios.get(`${host_var}/api/getSurgery/${loggedUser.username}/`)
+        axios.get(`${host_var}/getSurgery/${loggedUser.username}/`)
             .then((res) => {
                 setSurgries(res.data)
                 console.log("Surgery Res Data : ", res.data)
@@ -54,7 +54,7 @@ function TableOfSurgries() {
 
     if (Surgeries.length > 0 && Finished) {
         for (let i = 0; i < length; i++) {
-            axios.get(`${host_var}/api/findSpecificAnimal/${Surgeries[i].animalName}/`)
+            axios.get(`${host_var}/findSpecificAnimal/${Surgeries[i].animalName}/`)
                 .then((res) => {
                     setWeights(current => [...current, res.data.weight]);
                     setSpecies(current => [...current, res.data.species]);
@@ -99,7 +99,7 @@ function TableOfSurgries() {
 
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateOperationStatusVet/${id}/`,
+            url: `${host_var}/updateOperationStatusVet/${id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -130,7 +130,7 @@ function TableOfSurgries() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

@@ -15,7 +15,7 @@ function ServicesRequest(){
 
 
     useEffect(()=>{
-        axios.get(`${host_var}/api/getServicesRequests/${loggedUser.username}/`)
+        axios.get(`${host_var}/getServicesRequests/${loggedUser.username}/`)
         .then((res)=> setRequests(res.data))
         .catch((Err)=> console.log(Err))
 

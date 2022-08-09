@@ -49,7 +49,7 @@ function NewSchedule() {
         facebook_linkErr: "",
     })
     useEffect(() => {
-        axios.get(`${host_var}/api/findSurgery/${myid}/`)
+        axios.get(`${host_var}/findSurgery/${myid}/`)
             .then((res) => {
                 setmySurgery(res.data)
                 setDataCame(true)
@@ -62,7 +62,7 @@ function NewSchedule() {
 
 
     useEffect(() => {
-        axios.get(`${host_var}/api/findSpecificAnimal/${mySurgery.animalName}/`)
+        axios.get(`${host_var}/findSpecificAnimal/${mySurgery.animalName}/`)
             .then((res) => {
                 setMyAnimal(res.data)
                 getAge()
@@ -96,7 +96,7 @@ function NewSchedule() {
 
 
     useEffect(() => {
-        axios.get(`${host_var}/api/getMedication/${mySurgery.animalName}/`)
+        axios.get(`${host_var}/getMedication/${mySurgery.animalName}/`)
             .then((res) => setMedication(res.data))
             .catch((err) => console.log(err))
     }, [dataCame])
@@ -116,7 +116,7 @@ function NewSchedule() {
 
         await axios({
             method: 'post',
-            url: `${host_var}/api/SurVetUpdates/${myid}/`,
+            url: `${host_var}/SurVetUpdates/${myid}/`,
             data: dataField
         }).then((res) => {
             sendNotification(mySurgery.owner, "surgery")
@@ -144,7 +144,7 @@ function NewSchedule() {
         formdata2.append("reasonVet", reason)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateOperationStatusVet/${myid}/`,
+            url: `${host_var}/updateOperationStatusVet/${myid}/`,
             data: formdata2
         })
             .then((data) => {
@@ -191,7 +191,7 @@ function NewSchedule() {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

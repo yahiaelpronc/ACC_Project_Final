@@ -10,7 +10,7 @@ function ListLocations() {
 
   const [location, setlocation] = useState([])
   useEffect(() => {
-    axios.get(`${host_var}/api/listlocation/`)
+    axios.get(`${host_var}/listlocation/`)
       .then((res) => setlocation(res.data))
       .catch((err) => console.log(err))
   }, [])

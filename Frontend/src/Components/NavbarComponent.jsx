@@ -48,7 +48,7 @@ function NavbarComponent() {
     setmedication_notifications(0)
     setservice_notifications(0)
     setsurgery_notifications(0)
-    axios.get(`${host_var}/api/getAllMessagesAssociated/${loggedUser.username}/`)
+    axios.get(`${host_var}/getAllMessagesAssociated/${loggedUser.username}/`)
       .then((res) => {
         console.log("Messages : ", res.data)
         setMessages1(res.data)
@@ -59,7 +59,7 @@ function NavbarComponent() {
   }, [loggedUser]);
   useEffect(() => {
     if (userType === "user") {
-      axios.get(`${host_var}/api/findvet/${currentVet1}/`)
+      axios.get(`${host_var}/findvet/${currentVet1}/`)
         .then((res) => {
           setvetFullData1(res.data)
           console.log(res.data)
@@ -68,7 +68,7 @@ function NavbarComponent() {
         .catch((err) => console.log(err))
     }
     else {
-      axios.get(`${host_var}/api/finduser/${currentVet1}/`)
+      axios.get(`${host_var}/finduser/${currentVet1}/`)
         .then((res) => {
           setvetFullData1(res.data)
           console.log(res.data)
@@ -115,7 +115,7 @@ function NavbarComponent() {
     setMessages1([])
     setIntervalVariable1(
       setInterval(function () {
-        axios.get(`${host_var}/api/getAllMessages/${loggedUser.username}/${e.target.id}`)
+        axios.get(`${host_var}/getAllMessages/${loggedUser.username}/${e.target.id}`)
           .then((res) => {
             // console.log(res.data)
             setMessages1(res.data)
@@ -146,7 +146,7 @@ function NavbarComponent() {
     formField.append('receiver', currentVet1)
     await axios({
       method: 'post',
-      url: `${host_var}/api/addMessage/`,
+      url: `${host_var}/addMessage/`,
       data: formField
     }).then((response) => console.log(response.data))
       .catch((err) => console.log(err))
@@ -173,7 +173,7 @@ function NavbarComponent() {
     setmedication_notifications(0)
     setservice_notifications(0)
     setsurgery_notifications(0)
-    axios.get(`${host_var}/api/countNotifications/${loggedUser.username}/`)
+    axios.get(`${host_var}/countNotifications/${loggedUser.username}/`)
       .then((res) => {
         setnotifications(res.data)
         console.log("Notifications ", res.data)
@@ -198,7 +198,7 @@ function NavbarComponent() {
   }
   function deleteNotifications(e) {
     if (e.target.name === "surgeryNotifications") {
-      axios.delete(`${host_var}/api/deleteNotifications/${loggedUser.username}/surgery/`)
+      axios.delete(`${host_var}/deleteNotifications/${loggedUser.username}/surgery/`)
         .then((res) => {
           getNotifications()
         }
@@ -206,7 +206,7 @@ function NavbarComponent() {
         .catch((err) => console.log(err))
     }
     else if (e.target.name === "serviceNotifications") {
-      axios.delete(`${host_var}/api/deleteNotifications/${loggedUser.username}/service/`)
+      axios.delete(`${host_var}/deleteNotifications/${loggedUser.username}/service/`)
         .then((res) => {
           getNotifications()
         }
@@ -214,7 +214,7 @@ function NavbarComponent() {
         .catch((err) => console.log(err))
     }
     else {
-      axios.delete(`${host_var}/api/deleteNotifications/${loggedUser.username}/medication/`)
+      axios.delete(`${host_var}/deleteNotifications/${loggedUser.username}/medication/`)
         .then((res) => {
           getNotifications()
         }

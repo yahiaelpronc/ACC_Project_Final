@@ -30,7 +30,7 @@ function RequestSur() {
     const [Surgery_Operation, setSurgery_Operation] = useState()
 
     useEffect(() => {
-        axios.get(`${host_var}/api/findRequest/${myid}/`)
+        axios.get(`${host_var}/findRequest/${myid}/`)
             .then((res) => {
                 setRequest(res.data)
                 setDataCame(true)
@@ -46,7 +46,7 @@ function RequestSur() {
 
 
     useEffect(() => {
-        axios.get(`${host_var}/api/findSpecificAnimal/${Request.user}/${Request.animalName}/`)
+        axios.get(`${host_var}/findSpecificAnimal/${Request.user}/${Request.animalName}/`)
             .then((res) => {
                 setMyAnimal(res.data)
                 getAge()
@@ -80,7 +80,7 @@ function RequestSur() {
 
 
     useEffect(() => {
-        axios.get(`${host_var}/api/getMedication/${Request.animalName}/`)
+        axios.get(`${host_var}/getMedication/${Request.animalName}/`)
             .then((res) => setMedication(res.data))
             .catch((err) => console.log(err))
     }, [dataCame])
@@ -100,7 +100,7 @@ function RequestSur() {
         dataField.append("owner", Request.user)
         await axios({
             method: 'post',
-            url: `${host_var}/api/insertSurgry/`,
+            url: `${host_var}/insertSurgry/`,
             data: dataField
         }).then((res) =>
             history.push("/")
@@ -119,7 +119,7 @@ function RequestSur() {
         formdata1.append("statusVet", "accepted")
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateRequestStatusVet/${myid}/`,
+            url: `${host_var}/updateRequestStatusVet/${myid}/`,
             data: formdata1
         })
             .then((data) =>
@@ -135,7 +135,7 @@ function RequestSur() {
         formdata2.append("statusVet", "declined")
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateRequestStatusVet/${myid}/`,
+            url: `${host_var}/updateRequestStatusVet/${myid}/`,
             data: formdata2
         })
             .then((data) => {

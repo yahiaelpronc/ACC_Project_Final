@@ -19,7 +19,7 @@ function ServicesRequestsDiv(props) {
         formdata2.append("statusOwner", "accepted")
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateSrviceStatusOwner/${props.id}/`,
+            url: `${host_var}/updateSrviceStatusOwner/${props.id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -39,7 +39,7 @@ function ServicesRequestsDiv(props) {
         formdata2.append("reasonVet", reason)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/updateSrviceStatusOwner/${props.id}/`,
+            url: `${host_var}/updateSrviceStatusOwner/${props.id}/`,
             data: formdata2
         })
             .then((data) => {
@@ -60,7 +60,7 @@ function ServicesRequestsDiv(props) {
         formField.append("type", type)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertNotifications/`,
+            url: `${host_var}/insertNotifications/`,
             data: formField
         }).then((res) => {
             console.log("Notification Sent")

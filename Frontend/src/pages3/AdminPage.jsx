@@ -121,7 +121,7 @@ function AdminPage2() {
         fielddata.append("price", price)
         await axios({
             method: 'POST',
-            url: `${host_var}/api/insertLocation/${ownerType}/`,
+            url: `${host_var}/insertLocation/${ownerType}/`,
             data: fielddata
         }).then((res) => {
             if (res.data === "A Location With This Name Already Exists") {

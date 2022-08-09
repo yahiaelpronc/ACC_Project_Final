@@ -24,7 +24,7 @@ function VetForm2(){
 
 
     // useEffect(()=>{
-    //     axios.post(`${host_var}/api/insert/`)
+    //     axios.post(`${host_var}/insert/`)
     //     .then((res)=> res.data)
 
     // },[])
@@ -46,7 +46,7 @@ function VetForm2(){
         formField.append('specialization',specialization)
         await axios({
             method:'post',
-            url:`${host_var}/api/insertVet/`,
+            url:`${host_var}/insertVet/`,
             data:formField
 
         }).then((response)=> console.log(response.data))

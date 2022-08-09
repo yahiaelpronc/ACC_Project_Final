@@ -10,7 +10,7 @@ function DetailsLocations() {
   const [currentLocationDetails, setCurrentLocationDetails] = useState([])
   useEffect(() => {
     console.log(window.location.href.split("/")[4])
-    axios.get(`${host_var}/api/locationDetails/${window.location.href.split("/")[4]}/`)
+    axios.get(`${host_var}/locationDetails/${window.location.href.split("/")[4]}/`)
       .then((res) => setCurrentLocationDetails(res.data))
       .catch((err) => console.log(err))
   }, [])

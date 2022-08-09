@@ -22,7 +22,7 @@ function ScheduledOperation(){
 
 
     useEffect(()=>{
-        axios.get(`${host_var}/api/getSurgery/${loggedUser.username}/`)
+        axios.get(`${host_var}/getSurgery/${loggedUser.username}/`)
         .then((res)=> {setSurgries(res.data)
 
             for(var i = 0;i< res.data.length;i++){
@@ -51,7 +51,7 @@ function ScheduledOperation(){
     //     console.log("owner no "+i,owner)
     //     i=i+1
     //     const mytest=setTimeout(function (animalName,owner){
-    //         axios.get(`${host_var}/api/findSpecificAnimal/${owner}/${animalName}/`)
+    //         axios.get(`${host_var}/findSpecificAnimal/${owner}/${animalName}/`)
     //         .then((res)=> { setMyAnimal(res.data)
     //             getAge(MyAnimal.b_date)
     //         })
@@ -64,7 +64,7 @@ function ScheduledOperation(){
 
     // const getAnimal=(animalName,owner)=>{
     //     if(dataCame){
-    //         axios.get(`${host_var}/api/findSpecificAnimal/${owner}/${animalName}/`)
+    //         axios.get(`${host_var}/findSpecificAnimal/${owner}/${animalName}/`)
     //         .then((res)=> { setMyAnimal(res.data)
     //             getAge()
     //         })
@@ -98,7 +98,7 @@ function ScheduledOperation(){
     // }
     
     // useEffect(()=>{
-    //     axios.get(`${host_var}/api/getMedication/${Request.animalName}/`)
+    //     axios.get(`${host_var}/getMedication/${Request.animalName}/`)
     //     .then((res)=> setMyAnimal(res.data))
     //     .catch((err)=> console.log(err))
     // },[])

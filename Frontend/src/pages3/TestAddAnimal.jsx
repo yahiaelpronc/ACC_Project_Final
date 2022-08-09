@@ -79,7 +79,7 @@ function TestAddAnimal() {
     // GET USER TEST AXIOS
     const submitData = (e) => {
         e.preventDefault()
-        axios.get(`${host_var}/api/finduser/zoldeek`)
+        axios.get(`${host_var}/finduser/zoldeek`)
             .then((res) => {
                 setUsers(res.data)
                 setuserFetched(true)

@@ -10,7 +10,7 @@ function ListVets(){
 
     const [Vets,setvets]=useState([])
     useEffect(()=>{
-        axios.get(`${host_var}/api/listvets/`)
+        axios.get(`${host_var}/listvets/`)
         .then((res) => setvets(res.data))
         .catch((err)=> console.log(err))
 

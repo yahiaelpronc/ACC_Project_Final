@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { useEffect } from 'react'
 import {host_var} from "../vars_react"
 function TestAddLocation() {
-    // ${host_var}/api/task-list/
+    // ${host_var}/task-list/
     const [userData, setUserData] = useState({
         name: "",
         email: "",
